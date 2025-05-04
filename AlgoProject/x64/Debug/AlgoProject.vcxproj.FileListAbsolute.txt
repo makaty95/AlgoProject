@@ -1,0 +1,3 @@
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\x64\Debug\AlgoProject.vcxproj.AssemblyReference.cache
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\x64\Debug\AlgoProject.MainForm.resources
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\x64\Debug\AlgoProject.vcxproj.GenerateResource.cache

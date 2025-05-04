@@ -1,0 +1,7 @@
+﻿  main.cpp
+  MainForm.cpp
+  Utility.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  main.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  AlgoProject.vcxproj -> D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\x64\Debug\AlgoProject.exe
