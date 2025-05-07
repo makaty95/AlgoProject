@@ -6,6 +6,7 @@
 
 namespace DS {
     class Prop {
+    public:
         int radius;
         bool isSelected;
     };
@@ -51,11 +52,13 @@ namespace Geometry {
 }
 
 namespace FIO {
-	int ReadInputs(
+	int ReadMap(
                     std::string                             file_path,
                     std::vector<DS::Node>&                  intersections,
                     std::vector<std::vector<DS::Edge>>&     graph
     );
+
+    void ResetAll();
 }
 
 namespace Debug {
@@ -68,11 +71,32 @@ namespace Debug {
 
 }
 
+namespace Visuals {
+    void setMapDrawing(bool toSet);
+    static double display_scale = 1;
+    class DrawUtil {
+    public:
+        DrawUtil(double W = 0, double H = 0) {
+            this->H = H;
+            this->W = W;
+        }
+        double min_x, min_y, max_x, max_y;
+        double W, H; // width and height of the panel to draw on
+
+    };
+    DS::Point normalize(DS::Point p);
+    DS::Point normalize(double x, double y);
+}
+
 class MapData {
     public:
 
-    static std::vector<std::vector<DS::Edge>> graph;
-    static std::vector<DS::Node> nodes;
-    static DS::Node draggingNode;
-    static bool isDragging;
+        static Visuals::DrawUtil drawUtil;
+        static int defaultRadius;
+        static bool isLoaded;
+        static int N, M;
+        static std::vector<std::vector<DS::Edge>> graph;
+        static std::vector<DS::Node> nodes;
+        //static DS::Node draggingNode;
+        //static bool isDragging;
 };

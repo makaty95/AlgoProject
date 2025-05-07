@@ -39,6 +39,7 @@ namespace AlgoProject {
 		{
 			InitializeComponent();
 			EnableDoubleBuffering(this->mapView_panel); // enable smooth drawing for any animations.
+			
 		}
 
 		
@@ -65,6 +66,8 @@ namespace AlgoProject {
 
 
 	private: System::Windows::Forms::Button^ loadQueries_btn;
+	private: System::Windows::Forms::TrackBar^ zoom_trackBar;
+
 
 
 
@@ -82,13 +85,15 @@ namespace AlgoProject {
 		void InitializeComponent(void)
 		{
 			this->cover_panel = (gcnew System::Windows::Forms::Panel());
+			this->zoom_trackBar = (gcnew System::Windows::Forms::TrackBar());
 			this->controls_panel = (gcnew System::Windows::Forms::Panel());
+			this->indQuery_panel = (gcnew System::Windows::Forms::Panel());
+			this->exAll_btn = (gcnew System::Windows::Forms::Button());
+			this->loadQueries_btn = (gcnew System::Windows::Forms::Button());
 			this->loadMap_btn = (gcnew System::Windows::Forms::Button());
 			this->mapView_panel = (gcnew System::Windows::Forms::Panel());
-			this->loadQueries_btn = (gcnew System::Windows::Forms::Button());
-			this->exAll_btn = (gcnew System::Windows::Forms::Button());
-			this->indQuery_panel = (gcnew System::Windows::Forms::Panel());
 			this->cover_panel->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->BeginInit();
 			this->controls_panel->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -104,9 +109,18 @@ namespace AlgoProject {
 			this->cover_panel->Size = System::Drawing::Size(1374, 761);
 			this->cover_panel->TabIndex = 0;
 			// 
+			// zoom_trackBar
+			// 
+			this->zoom_trackBar->Location = System::Drawing::Point(18, 148);
+			this->zoom_trackBar->Name = L"zoom_trackBar";
+			this->zoom_trackBar->Size = System::Drawing::Size(286, 56);
+			this->zoom_trackBar->TabIndex = 2;
+			this->zoom_trackBar->Scroll += gcnew System::EventHandler(this, &MainForm::zoom_trackBar_Scroll);
+			// 
 			// controls_panel
 			// 
 			this->controls_panel->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->controls_panel->Controls->Add(this->zoom_trackBar);
 			this->controls_panel->Controls->Add(this->indQuery_panel);
 			this->controls_panel->Controls->Add(this->exAll_btn);
 			this->controls_panel->Controls->Add(this->loadQueries_btn);
@@ -115,6 +129,32 @@ namespace AlgoProject {
 			this->controls_panel->Name = L"controls_panel";
 			this->controls_panel->Size = System::Drawing::Size(325, 681);
 			this->controls_panel->TabIndex = 1;
+			// 
+			// indQuery_panel
+			// 
+			this->indQuery_panel->BackColor = System::Drawing::SystemColors::Window;
+			this->indQuery_panel->Location = System::Drawing::Point(18, 216);
+			this->indQuery_panel->Name = L"indQuery_panel";
+			this->indQuery_panel->Size = System::Drawing::Size(286, 363);
+			this->indQuery_panel->TabIndex = 3;
+			// 
+			// exAll_btn
+			// 
+			this->exAll_btn->Location = System::Drawing::Point(18, 611);
+			this->exAll_btn->Name = L"exAll_btn";
+			this->exAll_btn->Size = System::Drawing::Size(286, 55);
+			this->exAll_btn->TabIndex = 2;
+			this->exAll_btn->Text = L"Execute All Queries";
+			this->exAll_btn->UseVisualStyleBackColor = true;
+			// 
+			// loadQueries_btn
+			// 
+			this->loadQueries_btn->Location = System::Drawing::Point(18, 87);
+			this->loadQueries_btn->Name = L"loadQueries_btn";
+			this->loadQueries_btn->Size = System::Drawing::Size(286, 55);
+			this->loadQueries_btn->TabIndex = 1;
+			this->loadQueries_btn->Text = L"Load Queries";
+			this->loadQueries_btn->UseVisualStyleBackColor = true;
 			// 
 			// loadMap_btn
 			// 
@@ -133,32 +173,7 @@ namespace AlgoProject {
 			this->mapView_panel->Name = L"mapView_panel";
 			this->mapView_panel->Size = System::Drawing::Size(1026, 681);
 			this->mapView_panel->TabIndex = 0;
-			// 
-			// loadQueries_btn
-			// 
-			this->loadQueries_btn->Location = System::Drawing::Point(18, 87);
-			this->loadQueries_btn->Name = L"loadQueries_btn";
-			this->loadQueries_btn->Size = System::Drawing::Size(286, 55);
-			this->loadQueries_btn->TabIndex = 1;
-			this->loadQueries_btn->Text = L"Load Queries";
-			this->loadQueries_btn->UseVisualStyleBackColor = true;
-			// 
-			// exAll_btn
-			// 
-			this->exAll_btn->Location = System::Drawing::Point(18, 611);
-			this->exAll_btn->Name = L"exAll_btn";
-			this->exAll_btn->Size = System::Drawing::Size(286, 55);
-			this->exAll_btn->TabIndex = 2;
-			this->exAll_btn->Text = L"Execute All Queries";
-			this->exAll_btn->UseVisualStyleBackColor = true;
-			// 
-			// indQuery_panel
-			// 
-			this->indQuery_panel->BackColor = System::Drawing::SystemColors::Window;
-			this->indQuery_panel->Location = System::Drawing::Point(18, 216);
-			this->indQuery_panel->Name = L"indQuery_panel";
-			this->indQuery_panel->Size = System::Drawing::Size(286, 363);
-			this->indQuery_panel->TabIndex = 3;
+			this->mapView_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::mapView_panel_Paint);
 			// 
 			// MainForm
 			// 
@@ -168,8 +183,11 @@ namespace AlgoProject {
 			this->Controls->Add(this->cover_panel);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->cover_panel->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->EndInit();
 			this->controls_panel->ResumeLayout(false);
+			this->controls_panel->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -186,19 +204,70 @@ namespace AlgoProject {
 			std::string file_path = marshal_as<std::string>(mapPath);
 		    
 
-			int status = FIO::ReadInputs(file_path, MapData::nodes, MapData::graph);
+			int status = FIO::ReadMap(file_path, MapData::nodes, MapData::graph);
 			if (status != -1) {
 				MessageBox::Show("Done");
+				printf("\n min_x = %f, max_x = %f,min_y = %f, max_y =%f\n",
+					MapData::drawUtil.min_x, MapData::drawUtil.max_x, MapData::drawUtil.min_y, MapData::drawUtil.max_y);
 
-				// show the map info on the console.
-				Debug::PrintMapData(MapData::nodes, MapData::graph);
+				// show the map info on the console (takes time - debugging only :)).
+				//Debug::PrintMapData(MapData::nodes, MapData::graph);
 				
-				//TODO// draw the graph on the map view.
-
+				// draw the graph on the map view.
+				mapView_panel->Invalidate();
 				
 			}
 			else MessageBox::Show("Some error happened.");
 		}
+
+
+	}
+	private: System::Void mapView_panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		if (MapData::isLoaded) { // if there exist a map to draw.
+			Graphics^ g = e->Graphics;
+
+			// Draw map nodes
+			for each(DS::Node node in MapData::nodes) {
+				DS::Point p = Visuals::normalize(node.loc.x, node.loc.y); // normalize coordinates
+		
+				Brush^ brush = node.properties.isSelected ? Brushes::Red : Brushes::Black;
+				g->FillEllipse(brush, p.x - node.properties.radius,
+					p.y - node.properties.radius, node.properties.radius * 2, node.properties.radius * 2);
+
+			}
+
+
+			//TODO// Draw map edges
+			std::vector<bool> done(MapData::N+3, false);
+			for (int i = 0; i < MapData::N; i++) { // O(M)
+				for each (DS::Edge e in MapData::graph[i]) {
+					if (!done[e.neighbor_id]) {
+						// draw the edge
+						DS::Point p1 = Visuals::normalize(MapData::nodes[i].loc);
+						DS::Point p2 = Visuals::normalize(MapData::nodes[e.neighbor_id].loc);
+						g->DrawLine(gcnew Pen(Color::Black), Point(p1.x, p1.y), Point(p2.x, p2.y));
+					}
+				}
+				done[i] = true;
+			}
+
+
+
+		}
+	}
+
+	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		double w = mapView_panel->Size.Width;
+		double h = mapView_panel->Size.Height;
+		MapData::drawUtil = Visuals::DrawUtil(w, h);
+		printf("MapPanel (width,height): (%f, %f)\n\n",w, h);
+		
+		
+	}
+
+	private: System::Void zoom_trackBar_Scroll(System::Object^ sender, System::EventArgs^ e) {
+		double currentValue = zoom_trackBar->Value;
+		std::cout << "Current Value: " << currentValue << std::endl;
 
 
 	}
