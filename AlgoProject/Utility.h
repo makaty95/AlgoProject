@@ -72,8 +72,12 @@ namespace Debug {
 }
 
 namespace Visuals {
-    void setMapDrawing(bool toSet);
-    static double display_scale = 1;
+    //void setMapDrawing(bool toSet);
+
+    
+
+    std::vector<DS::Point> zoom();
+    DS::Point zoom(DS::Point p);
     class DrawUtil {
     public:
         DrawUtil(double W = 0, double H = 0) {
@@ -90,6 +94,8 @@ namespace Visuals {
 
 class MapData {
     public:
+        static double zoomFactor;
+        static DS::Point zoomCenter;
 
         static Visuals::DrawUtil drawUtil;
         static int defaultRadius;

@@ -12,6 +12,8 @@ int MapData::N = 0;
 int MapData::M = 0;
 int MapData::defaultRadius = 1;
 Visuals::DrawUtil MapData::drawUtil = Visuals::DrawUtil();
+double MapData::zoomFactor = 1.0;
+DS::Point MapData::zoomCenter = DS::Point();
 ////////////////////////////////////////////////////////////////////////
 
 double Geometry::EuclideanDistance(double x1, double y1, double x2, double y2) {
@@ -144,19 +146,70 @@ DS::Point Visuals::normalize(double x, double y) {
     double max_y = MapData::drawUtil.max_y;
     double w = MapData::drawUtil.W, h = MapData::drawUtil.H;
 
+
     // new normalized coordinates
     double _x = w * ((x - min_x) / (max_x - min_x));
     double _y = h - ((y - min_y) / (max_y - min_y)) * h;
-    
+
     // apply some padding
     double e = 20;
     if (_x < e) _x += e;
     if (_y < e) _y += e;
     if (_x > (w - e)) _x -= e;
     if(_y > (h - e)) _y -= e;
-    return DS::Point(_x * display_scale, _y * display_scale);
+
+    /*printf("factor: %f\n", Visuals::zoomFactor);
+    printf("before: %f, %f\n", _x, _y);
+    printf("after: %f, %f\n", _x * zoomFactor, _y * zoomFactor);*/
+
+    DS::Point ret = zoom(DS::Point(_x, _y));
+    //printf("before: %f, %f \n after: %f, %f \n", _x, _y, ret.x, ret.y);
+
+    return ret;
 }
 
 DS::Point Visuals::normalize(DS::Point p) {
     return normalize(p.x, p.y);
+}
+
+// apply some scale to the points to make a zoom
+std::vector<DS::Point> Visuals::zoom() {
+    std::vector<DS::Point> ret(MapData::N);
+    int idx = 0;
+    for (DS::Node node : MapData::nodes) {
+        
+        // translate to origin
+        ret[idx].x = node.loc.x - MapData::zoomCenter.x;
+        ret[idx].y = node.loc.y - MapData::zoomCenter.y;
+    
+        // scaling
+        ret[idx].x *= MapData::zoomFactor;
+        ret[idx].y *= MapData::zoomFactor;
+
+        // translation back
+        ret[idx].x += MapData::zoomCenter.x;
+        ret[idx].y += MapData::zoomCenter.y;
+    }
+
+    return ret;
+}
+
+
+DS::Point Visuals::zoom(DS::Point p) {
+    DS::Point ret = p;
+ 
+    // translate to origin
+    ret.x -= MapData::zoomCenter.x;
+    ret.y -= MapData::zoomCenter.y;
+
+    // scaling
+    ret.x *= MapData::zoomFactor;
+    ret.y *= MapData::zoomFactor;
+
+    // translation back
+    ret.x += MapData::zoomCenter.x;
+    ret.y += MapData::zoomCenter.y;
+    
+
+    return ret;
 }

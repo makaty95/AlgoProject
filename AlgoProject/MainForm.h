@@ -67,6 +67,9 @@ namespace AlgoProject {
 
 	private: System::Windows::Forms::Button^ loadQueries_btn;
 	private: System::Windows::Forms::TrackBar^ zoom_trackBar;
+	private: System::Windows::Forms::BindingSource^ bindingSource1;
+	private: System::ComponentModel::IContainer^ components;
+
 
 
 
@@ -75,7 +78,7 @@ namespace AlgoProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -84,23 +87,27 @@ namespace AlgoProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->cover_panel = (gcnew System::Windows::Forms::Panel());
-			this->zoom_trackBar = (gcnew System::Windows::Forms::TrackBar());
 			this->controls_panel = (gcnew System::Windows::Forms::Panel());
+			this->zoom_trackBar = (gcnew System::Windows::Forms::TrackBar());
 			this->indQuery_panel = (gcnew System::Windows::Forms::Panel());
 			this->exAll_btn = (gcnew System::Windows::Forms::Button());
 			this->loadQueries_btn = (gcnew System::Windows::Forms::Button());
 			this->loadMap_btn = (gcnew System::Windows::Forms::Button());
 			this->mapView_panel = (gcnew System::Windows::Forms::Panel());
+			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
 			this->cover_panel->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->BeginInit();
 			this->controls_panel->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// cover_panel
 			// 
 			this->cover_panel->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->cover_panel->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->cover_panel->Controls->Add(this->zoom_trackBar);
 			this->cover_panel->Controls->Add(this->controls_panel);
 			this->cover_panel->Controls->Add(this->mapView_panel);
 			this->cover_panel->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -109,29 +116,33 @@ namespace AlgoProject {
 			this->cover_panel->Size = System::Drawing::Size(1374, 761);
 			this->cover_panel->TabIndex = 0;
 			// 
-			// zoom_trackBar
-			// 
-			this->zoom_trackBar->Location = System::Drawing::Point(18, 148);
-			this->zoom_trackBar->Name = L"zoom_trackBar";
-			this->zoom_trackBar->Size = System::Drawing::Size(286, 56);
-			this->zoom_trackBar->TabIndex = 2;
-			this->zoom_trackBar->Scroll += gcnew System::EventHandler(this, &MainForm::zoom_trackBar_Scroll);
-			// 
 			// controls_panel
 			// 
 			this->controls_panel->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->controls_panel->Controls->Add(this->zoom_trackBar);
 			this->controls_panel->Controls->Add(this->indQuery_panel);
 			this->controls_panel->Controls->Add(this->exAll_btn);
 			this->controls_panel->Controls->Add(this->loadQueries_btn);
 			this->controls_panel->Controls->Add(this->loadMap_btn);
-			this->controls_panel->Location = System::Drawing::Point(1042, 31);
+			this->controls_panel->Location = System::Drawing::Point(1042, 10);
 			this->controls_panel->Name = L"controls_panel";
 			this->controls_panel->Size = System::Drawing::Size(325, 681);
 			this->controls_panel->TabIndex = 1;
 			// 
+			// zoom_trackBar
+			// 
+			this->zoom_trackBar->Location = System::Drawing::Point(348, 698);
+			this->zoom_trackBar->Maximum = 100;
+			this->zoom_trackBar->Minimum = 5;
+			this->zoom_trackBar->Name = L"zoom_trackBar";
+			this->zoom_trackBar->Size = System::Drawing::Size(688, 56);
+			this->zoom_trackBar->TabIndex = 2;
+			this->zoom_trackBar->Value = 5;
+			this->zoom_trackBar->Scroll += gcnew System::EventHandler(this, &MainForm::zoom_trackBar_Scroll);
+			this->zoom_trackBar->ValueChanged += gcnew System::EventHandler(this, &MainForm::zoom_trackBar_ValueChanged);
+			// 
 			// indQuery_panel
 			// 
+			this->indQuery_panel->AutoScroll = true;
 			this->indQuery_panel->BackColor = System::Drawing::SystemColors::Window;
 			this->indQuery_panel->Location = System::Drawing::Point(18, 216);
 			this->indQuery_panel->Name = L"indQuery_panel";
@@ -169,7 +180,7 @@ namespace AlgoProject {
 			// mapView_panel
 			// 
 			this->mapView_panel->BackColor = System::Drawing::Color::LightSteelBlue;
-			this->mapView_panel->Location = System::Drawing::Point(10, 31);
+			this->mapView_panel->Location = System::Drawing::Point(10, 10);
 			this->mapView_panel->Name = L"mapView_panel";
 			this->mapView_panel->Size = System::Drawing::Size(1026, 681);
 			this->mapView_panel->TabIndex = 0;
@@ -185,9 +196,10 @@ namespace AlgoProject {
 			this->Text = L"MainForm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->cover_panel->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->EndInit();
+			this->cover_panel->PerformLayout();
 			this->controls_panel->ResumeLayout(false);
-			this->controls_panel->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zoom_trackBar))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -223,13 +235,19 @@ namespace AlgoProject {
 
 	}
 	private: System::Void mapView_panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		
+		
+
 		if (MapData::isLoaded) { // if there exist a map to draw.
+			std::cout << "painting" << std::endl;
 			Graphics^ g = e->Graphics;
 
 			// Draw map nodes
 			for each(DS::Node node in MapData::nodes) {
+				
 				DS::Point p = Visuals::normalize(node.loc.x, node.loc.y); // normalize coordinates
-		
+				
+
 				Brush^ brush = node.properties.isSelected ? Brushes::Red : Brushes::Black;
 				g->FillEllipse(brush, p.x - node.properties.radius,
 					p.y - node.properties.radius, node.properties.radius * 2, node.properties.radius * 2);
@@ -257,6 +275,13 @@ namespace AlgoProject {
 	}
 
 	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		
+		// setting zoomCenter
+
+
+		MapData::zoomCenter = DS::Point(mapView_panel->Width / 2.0, mapView_panel->Height / 2.0);
+
+
 		double w = mapView_panel->Size.Width;
 		double h = mapView_panel->Size.Height;
 		MapData::drawUtil = Visuals::DrawUtil(w, h);
@@ -266,10 +291,19 @@ namespace AlgoProject {
 	}
 
 	private: System::Void zoom_trackBar_Scroll(System::Object^ sender, System::EventArgs^ e) {
-		double currentValue = zoom_trackBar->Value;
-		std::cout << "Current Value: " << currentValue << std::endl;
-
+	/*	double currentValue = zoom_trackBar->Value;
+		std::cout << "Current Value: " << currentValue << std::endl;*/
 
 	}
+	private: System::Void zoom_trackBar_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+		double currentValue = (double)zoom_trackBar->Value;
+		printf("TrackBar Value: %f\n\n", currentValue); // Debug output
+		//System::Windows::Forms::MessageBox::Show("TrackBar value changed! " + currentValue); // Simple test
+		
+
+		MapData::zoomFactor = currentValue/10.0;
+		mapView_panel->Invalidate();
+	}
+
 };
 }
