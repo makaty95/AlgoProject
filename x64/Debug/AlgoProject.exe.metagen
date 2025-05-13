@@ -17,5 +17,10 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class AlgoProject.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 currentQuery : Public
   Methods:
     EnableDoubleBuffering(Control): PrivateScope, Public, HideBySig
+    setQueriesInfo(): PrivateScope, Public, HideBySig
+    setCurrentQuery(Int32): PrivateScope, Public, HideBySig
+    setTimeLabels(): PrivateScope, Public, HideBySig

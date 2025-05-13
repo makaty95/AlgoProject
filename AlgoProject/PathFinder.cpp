@@ -1,51 +1,55 @@
 #include "PathFinder.h"
+#include "utility.h"
 #include <queue>
 #include <cfloat>
 #include <algorithm>
 #include <iostream>
 
 // Static variable definitions
-std::vector<Intersection> PathFinder::intersections;
-std::vector<std::vector<Road>> PathFinder::graph;
-std::vector<Query> PathFinder::queries;
-std::vector<Result> PathFinder::results;
+//std::vector<DS::Node> PathFinder::intersections;
+//std::vector<std::vector<DS::Edge>> PathFinder::graph;
+using namespace std;
 
 void Start()
 {
-    for (const Query& q : PathFinder::queries)
+    // clearing for new results.
+    MapData::results.clear();
+
+    for (const DS::Query& q : MapData::queries)
     {
-        Intersection s, d;
-        s.x = q.x_s; s.y = q.y_s;
-        d.x = q.x_d; d.y = q.y_d;
-        vector <Road >SId = FindAdjacentNodes(s, q.R);
+        DS::Node s, d;
+        s.loc.x = q.S.x; s.loc.y = q.S.y;
+        d.loc.x = q.E.x; d.loc.y = q.E.y;
+
+        vector <DS::Edge >SId = FindAdjacentNodes(s, q.R);
 
         ///*for (int i = 0; i < SId.size(); i++)
         //{
         //    cout << "\nthe source Nodes "<< SId[i].length;
         //}*/
 
-        vector <Road >DId = FindAdjacentNodes(d, q.R);
+        vector <DS::Edge >DId = FindAdjacentNodes(d, q.R);
 
         ///*for (int i = 0; i < DId.size(); i++)
         //{
         //    cout << "\nthe destination Nodes " << DId[i].length;
         //}*/
 
-        int indx_start = PathFinder::graph.size();
-        int indx_end = PathFinder::graph.size() + 1;
+        int indx_start = MapData::graph.size();
+        int indx_end = MapData::graph.size() + 1;
 
-        PathFinder::graph.push_back(SId);
-        PathFinder::graph.push_back(DId);
+        MapData::graph.push_back(SId);
+        MapData::graph.push_back(DId);
 
         for (int i = 0; i < DId.size(); i++)
         {
-            Road r = DId[i];
+            DS::Edge r = DId[i];
 
             int temp = r.neighbor_id;
 
             r.neighbor_id = indx_end;
 
-            PathFinder::graph[temp].push_back(r);
+            MapData::graph[temp].push_back(r);
         }
 
         Dijkstra(indx_start, indx_end);
@@ -53,26 +57,27 @@ void Start()
 
         for (int i = 0; i < DId.size(); i++)
         {
-            vector<Road>& adj = PathFinder::graph[DId[i].neighbor_id];
+            vector<DS::Edge>& adj = MapData::graph[DId[i].neighbor_id];
             adj.pop_back();
 
         }
 
 
-        PathFinder::graph.pop_back(); // indx_end
-        PathFinder::graph.pop_back(); // indx_start
+        MapData::graph.pop_back(); // indx_end
+        MapData::graph.pop_back(); // indx_start
     }
 }
 
-std::vector<Road> FindAdjacentNodes(const Intersection& point, double R)
+std::vector<DS::Edge> FindAdjacentNodes(const DS::Node& point, double R)
 {
-    vector <Road >nId;
-    for (int i = 0; i < PathFinder::intersections.size(); i++)
+    vector <DS::Edge >nId;
+    for (int i = 0; i < MapData::nodes.size(); i++)
     {
-        double temp = EuclideanDistance(point.x, point.y, PathFinder::intersections[i].x, PathFinder::intersections[i].y);
+        
+        double temp = Geometry::EuclideanDistance(point.loc, MapData::nodes[i].loc);
         if (temp <= R)
         {
-            Road r;
+            DS::Edge r;
             r.neighbor_id = i;
             r.length = temp;
             r.speed = 5;
@@ -86,8 +91,8 @@ std::vector<Road> FindAdjacentNodes(const Intersection& point, double R)
 
 void Dijkstra(int start, int end)
 {
-    vector<pair<int, int>>parent(PathFinder::graph.size());
-    vector<double>times(PathFinder::graph.size(), DBL_MAX);
+    vector<pair<int, int>>parent(MapData::graph.size());
+    vector<double>times(MapData::graph.size(), DBL_MAX);
     times[start] = 0;
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
 
@@ -105,9 +110,9 @@ void Dijkstra(int start, int end)
         if (curr_time > times[curr])
             continue;
 
-        for (int i = 0; i < PathFinder::graph[curr].size(); i++)
+        for (int i = 0; i < MapData::graph[curr].size(); i++)
         {
-            Road r = PathFinder::graph[curr][i];
+            DS::Edge r = MapData::graph[curr][i];
             double totalTime = times[curr] + r.time;
 
             if (times[r.neighbor_id] > totalTime)
@@ -139,7 +144,7 @@ void get_res(const std::vector<std::pair<int, int>>& parent, int start, int end,
             r.pathId.push_back(i);
         }
 
-        r.totalDistance += PathFinder::graph[from_3h][edgeIndex_3h].length;
+        r.totalDistance += MapData::graph[from_3h][edgeIndex_3h].length;
         i = from_3h;
     }
 
@@ -153,10 +158,10 @@ void get_res(const std::vector<std::pair<int, int>>& parent, int start, int end,
 
 
     r.walkingDistance =
-        PathFinder::graph[start][startEdgeIndex].length +
-        PathFinder::graph[endFrom][endEdgeIndex].length;
+        MapData::graph[start][startEdgeIndex].length +
+        MapData::graph[endFrom][endEdgeIndex].length;
 
     r.vehicleDistance = r.totalDistance - r.walkingDistance;
 
-    PathFinder::results.push_back(r);
+    MapData::results.push_back(r);
 }

@@ -1,19 +1,20 @@
 #include "MainForm.h"
 #include <iostream>
-#include <vector>
-#include <string>
-#include <queue>
-#include <iomanip> 
-#include <fstream>
-#include <chrono>
-#include "FileHandling.h"
-#include "PathFinder.h"
-#include "Timer.h"
+
+//#include <vector>
+//#include <string>
+//#include <queue>
+//#include <iomanip> 
+//#include <fstream>
+//#include <chrono>
+//#include "FileHandling.h"
+//#include "PathFinder.h"
+//#include "Timer.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
-using namespace std;
-using namespace std::chrono;
+//using namespace std;
+//using namespace std::chrono;
 
 
 
@@ -27,28 +28,28 @@ int main(int argc, char argv[])
 	   /*string map_file = "map1.txt";
 	   string queries_file = "queries1.txt";*/
 
-	   string map_file = "testcases\\[1] Sample Cases\\Input\\map5.txt";
-	   string queries_file = "testcases\\[1] Sample Cases\\Input\\queries5.txt";
+	   /*string map_file = "testcases\\[1] Sample Cases\\Input\\map5.txt";
+	   string queries_file = "testcases\\[1] Sample Cases\\Input\\queries5.txt";*/
 
 
 
 
-	auto timeWithIO = steady_clock::now();
+	//auto timeWithIO = steady_clock::now();
 
 
-	ReadInputs(map_file, PathFinder::intersections, PathFinder::graph);
-	ReadQueries(queries_file, PathFinder::queries);
+	//ReadInputs(map_file, PathFinder::intersections, PathFinder::graph); //done
+	//ReadQueries(queries_file, PathFinder::queries);	// done
 
 
-	auto timeWithoutIO = steady_clock::now();
+	//auto timeWithoutIO = steady_clock::now();
 	
 
-	Start();
+	//Start();
 
-	auto endtimeWithoutIO = steady_clock::now();
-	Result::elapsedTimeWithoutIO = duration_cast<duration<double>>(endtimeWithoutIO - timeWithoutIO).count();  // OK
+	//auto endtimeWithoutIO = steady_clock::now();
+	//Result::elapsedTimeWithoutIO = duration_cast<duration<double>>(endtimeWithoutIO - timeWithoutIO).count();  // OK
 
-	printResult("output.txt", PathFinder::results, timeWithIO);
+	//printResult("output.txt", PathFinder::results, timeWithIO);
 
 
 	Application::EnableVisualStyles();

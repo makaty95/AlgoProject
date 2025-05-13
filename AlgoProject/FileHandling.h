@@ -1,24 +1,33 @@
-#ifndef FILEHANDLING_H
-#define FILEHANDLING_H
+#pragma once
 
 #include "Types.h"
 #include <vector>
 #include <string>
 using namespace std;
 
-double EuclideanDistance(double x1, double y1, double x2, double y2);
+void ResetAll();
 
-void ReadInputs(string file_path, vector<Intersection>& intersections,
-    vector<vector<Road>>& graph);
+namespace FIO {
+    int ReadMap(
+        std::string                             file_path,
+        std::vector<DS::Node>&                  intersections,
+        std::vector<std::vector<DS::Edge>>&     graph
+    );
 
-void ReadQueries(string& file_path, vector<Query>& queries);
+    int ReadQueries(string& file_path, vector<DS::Query>& queries);
 
-void printData(vector<Intersection>& intersections,
-    vector<vector<Road>>& graph,
-    vector<Query>& queries);
+    void printResult(const std::string& filename, vector<Result>& results, const std::chrono::steady_clock::time_point& timeWithIO);
 
-void printResult(const std::string& filename , vector<Result>& results, const std::chrono::steady_clock::time_point& timeWithIO);
+}
 
 
-#endif 
+//double EuclideanDistance(double x1, double y1, double x2, double y2);
 
+//void ReadInputs(string file_path, vector<Intersection>& intersections,
+//    vector<vector<Road>>& graph);
+
+
+
+//void printData(vector<Intersection>& intersections,
+//    vector<vector<Road>>& graph,
+//    vector<Query>& queries);

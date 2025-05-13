@@ -1,99 +1,24 @@
 #include "Utility.h"
+#include "Types.h"
 #include <fstream>
 
 
 // Initializing static map data
 //bool MapData::isDragging = false;
 //DS::Node  MapData::draggingNode = DS::Node();
-std::vector<std::vector<DS::Edge>> MapData::graph = std::vector<std::vector<DS::Edge>>();
-std::vector<DS::Node> MapData::nodes = std::vector<DS::Node>();
-bool MapData::isLoaded = false;
-int MapData::N = 0;
-int MapData::M = 0;
-int MapData::defaultRadius = 1;
-Visuals::DrawUtil MapData::drawUtil = Visuals::DrawUtil();
-double MapData::zoomFactor = 1.0;
-DS::Point MapData::zoomCenter = DS::Point();
+
+
 ////////////////////////////////////////////////////////////////////////
 
+
+
+
 double Geometry::EuclideanDistance(double x1, double y1, double x2, double y2) {
-	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    return std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 double Geometry::EuclideanDistance(DS::Point a, DS::Point b) {
-    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
-
-void FIO::ResetAll() {
-    MapData::nodes.clear();
-    MapData::graph.clear();
-    MapData::isLoaded = false;
-    MapData::N = 0;
-    MapData::M = 0;
-}
-
-int FIO::ReadMap(
-    std::string                             file_path,
-    std::vector<DS::Node>&                  nodes,
-    std::vector<std::vector<DS::Edge>>&     graph
-) {
-    
-    std::ifstream file(file_path);
-    if (!file.is_open()) {
-        std::cerr << "Error opening map file: " << file_path << "\n";
-        return -1;
-    }
-
-    FIO::ResetAll();
-
-    int N;
-    file >> N;
-    nodes.resize(N);
-    graph.resize(N);
-    for (int i = 0; i < N; ++i) {
-        int id;
-        double x, y;
-        file >> id >> x >> y;
-        nodes[id] = DS::Node(x, y);
-    }
-
-
-
-    int M;
-    file >> M;
-    for (int i = 0; i < M; ++i) {
-        int u, v;
-        double length, speed;
-        file >> u >> v >> length >> speed;
-        double time = (length / speed) * 60.0;
-        graph[u].push_back(DS::Edge( v, length, speed, time));
-        graph[v].push_back(DS::Edge(u, length, speed, time));
-    }
-
-    file.close();
-
-
-
-    // utility for map visualizing
-    MapData::N = N;
-    MapData::M = M;
-    MapData::drawUtil.max_x = MapData::drawUtil.min_x = nodes[0].loc.x;
-    MapData::drawUtil.max_y = MapData::drawUtil.min_y = nodes[0].loc.y;
-    for (int i = 0; i < N; i++) {
-        double x = nodes[i].loc.x;
-        double y = nodes[i].loc.y;
-        nodes[i].properties.radius = MapData::defaultRadius;
-        nodes[i].properties.isSelected = false;
-        MapData::drawUtil.max_x = std::max(MapData::drawUtil.max_x, x);
-        MapData::drawUtil.max_y = std::max(MapData::drawUtil.max_y, y);
-        MapData::drawUtil.min_x = std::min(MapData::drawUtil.min_x, x);
-        MapData::drawUtil.min_y = std::min(MapData::drawUtil.min_y, y);
-    }
-
-    MapData::isLoaded = true;
-    return 0;
-
-
+    return EuclideanDistance(a.x, a.y, b.x, b.y);
 }
 
 
@@ -140,11 +65,11 @@ void Debug::PrintQueriesData(std::vector<DS::Query>& queries) {
 
 DS::Point Visuals::normalize(double x, double y) {
 
-    double min_x = MapData::drawUtil.min_x;
-    double min_y = MapData::drawUtil.min_y;
-    double max_x = MapData::drawUtil.max_x;
-    double max_y = MapData::drawUtil.max_y;
-    double w = MapData::drawUtil.W, h = MapData::drawUtil.H;
+    double min_x = MapData::drawInfo.min_x;
+    double min_y = MapData::drawInfo.min_y;
+    double max_x = MapData::drawInfo.max_x;
+    double max_y = MapData::drawInfo.max_y;
+    double w = MapData::drawInfo.W, h = MapData::drawInfo.H;
 
 
     // new normalized coordinates
