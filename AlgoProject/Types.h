@@ -107,6 +107,7 @@ public:
     static std::vector<DS::Node> nodes;
     static std::vector<DS::Query> queries;
     static std::vector<Result> results;
+    static DS::Point panOffset; // to tracks total pan movement
 
     //static DS::Node draggingNode;
     //static bool isDragging;

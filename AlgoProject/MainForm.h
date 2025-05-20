@@ -8,6 +8,7 @@
 #include <msclr/marshal_cppstd.h> // Required for marshal_as
 using namespace msclr::interop;
 using namespace std::chrono;
+using namespace std;
 
 namespace AlgoProject {
 
@@ -29,6 +30,8 @@ namespace AlgoProject {
 
 
 	public:
+		bool isDragging = false;
+		Point dragStartPos;
 		int currentQuery = 0;
 
 		void EnableDoubleBuffering(Control^ ctrl)
@@ -38,6 +41,11 @@ namespace AlgoProject {
 					System::Reflection::BindingFlags::NonPublic |
 					System::Reflection::BindingFlags::Instance);
 			aProp->SetValue(ctrl, true, nullptr);
+		}
+
+		void setMessage(String^ message, Color color) {
+			lbl_message->Text = message;
+			lbl_message->ForeColor = color;
 		}
 
 
@@ -58,6 +66,7 @@ namespace AlgoProject {
 			);
 
 			label5->Text = String::Format("R : {0}  ", MapData::queries[query_idx].R);
+			label8->Text = String::Format("Query ID : {0}  ", currentQuery + 1);
 
 
 		}
@@ -117,6 +126,8 @@ namespace AlgoProject {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ lbl_message;
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -138,12 +149,14 @@ namespace AlgoProject {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->cover_panel = (gcnew System::Windows::Forms::Panel());
+			this->lbl_message = (gcnew System::Windows::Forms::Label());
 			this->zoom_trackBar = (gcnew System::Windows::Forms::TrackBar());
 			this->controls_panel = (gcnew System::Windows::Forms::Panel());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->indQuery_panel = (gcnew System::Windows::Forms::Panel());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -167,6 +180,7 @@ namespace AlgoProject {
 			// 
 			this->cover_panel->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->cover_panel->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->cover_panel->Controls->Add(this->lbl_message);
 			this->cover_panel->Controls->Add(this->zoom_trackBar);
 			this->cover_panel->Controls->Add(this->controls_panel);
 			this->cover_panel->Controls->Add(this->mapView_panel);
@@ -176,8 +190,19 @@ namespace AlgoProject {
 			this->cover_panel->Size = System::Drawing::Size(1374, 761);
 			this->cover_panel->TabIndex = 0;
 			// 
+			// lbl_message
+			// 
+			this->lbl_message->AutoSize = true;
+			this->lbl_message->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_message->Location = System::Drawing::Point(11, 698);
+			this->lbl_message->Name = L"lbl_message";
+			this->lbl_message->Size = System::Drawing::Size(0, 20);
+			this->lbl_message->TabIndex = 3;
+			// 
 			// zoom_trackBar
 			// 
+			this->zoom_trackBar->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->zoom_trackBar->Location = System::Drawing::Point(348, 698);
 			this->zoom_trackBar->Maximum = 100;
 			this->zoom_trackBar->Minimum = 5;
@@ -206,27 +231,33 @@ namespace AlgoProject {
 			// label7
 			// 
 			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label7->Location = System::Drawing::Point(19, 649);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(94, 16);
+			this->label7->Size = System::Drawing::Size(126, 20);
 			this->label7->TabIndex = 5;
 			this->label7->Text = L"time without IO:";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(15, 623);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(110, 16);
+			this->label6->Size = System::Drawing::Size(145, 20);
 			this->label6->TabIndex = 4;
 			this->label6->Text = L"Total time with IO:";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(15, 159);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(15, 155);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(107, 16);
+			this->label1->Size = System::Drawing::Size(141, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Queries Count : 0";
 			// 
@@ -234,6 +265,7 @@ namespace AlgoProject {
 			// 
 			this->indQuery_panel->AutoScroll = true;
 			this->indQuery_panel->BackColor = System::Drawing::SystemColors::Window;
+			this->indQuery_panel->Controls->Add(this->label8);
 			this->indQuery_panel->Controls->Add(this->label5);
 			this->indQuery_panel->Controls->Add(this->label4);
 			this->indQuery_panel->Controls->Add(this->label3);
@@ -245,45 +277,67 @@ namespace AlgoProject {
 			this->indQuery_panel->Size = System::Drawing::Size(286, 363);
 			this->indQuery_panel->TabIndex = 3;
 			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label8->Location = System::Drawing::Point(6, 119);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(81, 20);
+			this->label8->TabIndex = 6;
+			this->label8->Text = L"Query ID:";
+			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(9, 202);
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(6, 225);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(20, 16);
+			this->label5->Size = System::Drawing::Size(26, 20);
 			this->label5->TabIndex = 5;
 			this->label5->Text = L"R:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(9, 161);
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(6, 191);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(34, 16);
+			this->label4->Size = System::Drawing::Size(43, 20);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"End:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 119);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(6, 158);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(37, 16);
+			this->label3->Size = System::Drawing::Size(50, 20);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Start:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 82);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(56, 72);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(112, 16);
+			this->label2->Size = System::Drawing::Size(147, 20);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Current Query Info";
 			// 
 			// prev_btn
 			// 
-			this->prev_btn->Location = System::Drawing::Point(4, 4);
+			this->prev_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->prev_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->prev_btn->Location = System::Drawing::Point(10, 5);
 			this->prev_btn->Name = L"prev_btn";
 			this->prev_btn->Size = System::Drawing::Size(126, 40);
 			this->prev_btn->TabIndex = 1;
@@ -293,7 +347,10 @@ namespace AlgoProject {
 			// 
 			// next_btn
 			// 
-			this->next_btn->Location = System::Drawing::Point(157, 4);
+			this->next_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->next_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->next_btn->Location = System::Drawing::Point(142, 4);
 			this->next_btn->Name = L"next_btn";
 			this->next_btn->Size = System::Drawing::Size(126, 41);
 			this->next_btn->TabIndex = 0;
@@ -303,6 +360,9 @@ namespace AlgoProject {
 			// 
 			// exAll_btn
 			// 
+			this->exAll_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->exAll_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->exAll_btn->Location = System::Drawing::Point(18, 547);
 			this->exAll_btn->Name = L"exAll_btn";
 			this->exAll_btn->Size = System::Drawing::Size(286, 55);
@@ -313,6 +373,9 @@ namespace AlgoProject {
 			// 
 			// loadQueries_btn
 			// 
+			this->loadQueries_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->loadQueries_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->loadQueries_btn->Location = System::Drawing::Point(18, 87);
 			this->loadQueries_btn->Name = L"loadQueries_btn";
 			this->loadQueries_btn->Size = System::Drawing::Size(286, 55);
@@ -323,6 +386,9 @@ namespace AlgoProject {
 			// 
 			// loadMap_btn
 			// 
+			this->loadMap_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->loadMap_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->loadMap_btn->Location = System::Drawing::Point(18, 14);
 			this->loadMap_btn->Name = L"loadMap_btn";
 			this->loadMap_btn->Size = System::Drawing::Size(286, 55);
@@ -334,11 +400,15 @@ namespace AlgoProject {
 			// mapView_panel
 			// 
 			this->mapView_panel->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->mapView_panel->Cursor = System::Windows::Forms::Cursors::Cross;
 			this->mapView_panel->Location = System::Drawing::Point(10, 10);
 			this->mapView_panel->Name = L"mapView_panel";
 			this->mapView_panel->Size = System::Drawing::Size(1026, 681);
 			this->mapView_panel->TabIndex = 0;
 			this->mapView_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::mapView_panel_Paint);
+			this->mapView_panel->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::mapView_panel_MouseDown);
+			this->mapView_panel->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::mapView_panel_MouseMove);
+			this->mapView_panel->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::mapView_panel_MouseUp);
 			// 
 			// MainForm
 			// 
@@ -373,11 +443,16 @@ namespace AlgoProject {
 			String^ mapPath = openFileDialog->FileName;
 			std::string file_path = marshal_as<std::string>(mapPath);
 
+			setMessage("Reading Map....", Color::Black);
+			this->Refresh();
+
 			// begine input time record
 			auto mapStartTime = steady_clock::now();
 			int status = FIO::ReadMap(file_path, MapData::nodes, MapData::graph);
 			auto mapEndTime = steady_clock::now();
 
+			setMessage("Done.", Color::Black);
+			this->Refresh();
 			
 
 			if (status  == 0) {
@@ -414,22 +489,111 @@ namespace AlgoProject {
 			std::cout << "painting" << std::endl;
 			Graphics^ g = e->Graphics;
 
-			// Draw map nodes
-			for each(DS::Node node in MapData::nodes) {
+			//1// draw the nodes for the current query with diff color
+			Brush^ brush =  Brushes::Red;
+			
+
+			//-------------------Draw Map Nodes----------------------//
+			
+			vector<bool> taken(MapData::N + 1, false);
+
+			// if we got the results for the query
+			if (!MapData::results.empty()) {
+				auto currentQueryResult = MapData::results[currentQuery];
 				
+				for (auto id : currentQueryResult.pathId) {
+					DS::Node node = MapData::nodes[id];
+					DS::Point p = Visuals::normalize(node.loc.x, node.loc.y); // normalize coordinates
+					int r = MapData::nodes[id].properties.radius;
+					
+					r *= 4; // just for debugging
+					g->FillEllipse(brush, (p.x - r), (p.y - r), r * 2, r * 2);
+					taken[id] = true; // mark it so we don't paint it again. 
+				}
+			}
+
+			// Draw the other map nodes
+			for (int idx = 0; idx < MapData::N; idx++) {
+
+				// if we already drew it 
+				if (taken[idx]) continue;
+
+				DS::Node node = MapData::nodes[idx];
 				DS::Point p = Visuals::normalize(node.loc.x, node.loc.y); // normalize coordinates
 				
-
-				Brush^ brush = node.properties.isSelected ? Brushes::Red : Brushes::Black;
+				brush = node.properties.isSelected ? Brushes::Red : Brushes::Black;
+				
 				g->FillEllipse(brush, p.x - node.properties.radius,
 					p.y - node.properties.radius, node.properties.radius * 2, node.properties.radius * 2);
 
 			}
 
+			
 
-			// Draw map edges
+
+			//-------------------Draw Map Edges----------------------//
 			std::vector<bool> done(MapData::N+3, false);
+
+
+			// if the queries results are calculated.
+			if (!MapData::results.empty()) {
+				// first draw the edges of the path of current query
+				int resultsSize = MapData::results[currentQuery].pathId.size();
+				printf("resultSize: %d\n", resultsSize);
+				for (int idx = 0; idx < (resultsSize - 1); idx++) {
+				
+					// indices of the nodes that form an edge in the path.
+					int cur = MapData::results[currentQuery].pathId[idx];
+					int nex = MapData::results[currentQuery].pathId[idx + 1];
+
+					// draw the path edge (cur -> nex)
+					DS::Point p1 = Visuals::normalize(MapData::nodes[cur].loc);
+					DS::Point p2 = Visuals::normalize(MapData::nodes[nex].loc);
+					g->DrawLine(gcnew Pen(Color::Red), Point(p1.x, p1.y), Point(p2.x, p2.y));
+				
+					// draw all the other edges starting from node idx
+					for each(DS::Edge e in MapData::graph[cur]) {
+						if (e.neighbor_id != nex && !done[e.neighbor_id]) {
+							p2 = Visuals::normalize(MapData::nodes[e.neighbor_id].loc);
+							g->DrawLine(gcnew Pen(Color::Black), Point(p1.x, p1.y), Point(p2.x, p2.y));
+						}
+					}
+
+					// mark the node idx as done
+					done[cur] = true;
+				}
+
+				// draw the start and end points
+				DS::Point ps = MapData::queries[currentQuery].S;
+				DS::Point pe = MapData::queries[currentQuery].E;
+				DS::Point pss = MapData::nodes[MapData::results[currentQuery].pathId.back()].loc;
+				DS::Point pee = MapData::nodes[MapData::results[currentQuery].pathId.front()].loc;
+
+				// normalize the points
+				ps = Visuals::normalize(ps);
+				pss = Visuals::normalize(pss);
+				pe = Visuals::normalize(pe);
+				pee = Visuals::normalize(pee);
+
+				int r = 4 * MapData::nodes[MapData::results[currentQuery].pathId.front()].properties.radius;
+				
+				brush = Brushes::Blue;
+				// draw the 2 nodes
+				g->FillEllipse(brush, ps.x - r, ps.y - r, r * 2, r * 2);
+				g->FillEllipse(brush, pe.x - r, pe.y - r, r * 2, r * 2);
+
+
+				// draw the 2 edges 
+				g->DrawLine(gcnew Pen(Color::Blue), Point(ps.x, ps.y), Point(pss.x, pss.y));
+				g->DrawLine(gcnew Pen(Color::Blue), Point(pe.x, pe.y), Point(pee.x, pee.y));
+
+
+			}
+
+			// the draw the rest of the edges
 			for (int i = 0; i < MapData::N; i++) { // O(M)
+				if (done[i]) continue; // if i already drew all edges out of this node.
+
 				for each (DS::Edge e in MapData::graph[i]) {
 					if (!done[e.neighbor_id]) {
 						// draw the edge
@@ -487,11 +651,17 @@ namespace AlgoProject {
 			// transform the String^ to regular cpp classic string.
 			std::string file_path = marshal_as<std::string>(queriesPath);
 			
+			setMessage("Reading Queries....", Color::Black);
+			this->Refresh();
+
 			// record time
 			auto qStartTime = steady_clock::now();
 			int status = FIO::ReadQueries(file_path, MapData::queries);
 			auto qEndTime = steady_clock::now();
 			
+			setMessage("Done.", Color::Black);
+			this->Refresh();
+
 			if (status  == 0) {
 				// add time to IO time.
 				Result::elapsedTimeWithIO += duration_cast<duration<double>>(qEndTime - qStartTime).count();
@@ -502,11 +672,12 @@ namespace AlgoProject {
 				setQueriesInfo();
 
 				MessageBox::Show("Queries Loaded.");
+				
 
 				// show the map info on the console (takes time - debugging only :)).
 				Debug::PrintQueriesData(MapData::queries);
 
-				//TODO// insert 
+				
 			}
 			else MessageBox::Show("Some error happened.");
 
@@ -517,7 +688,10 @@ namespace AlgoProject {
 	}
 	private: System::Void exAll_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		
+	
+		setMessage("Executing All Queries....", Color::Green);
+		this->Refresh();
+
 		auto startTime = steady_clock::now();
 		// execute all queries
 		Start();
@@ -536,12 +710,32 @@ namespace AlgoProject {
 		FIO::printResult("output.txt", MapData::results, IOStartTime);
 		
 		setTimeLabels();
+
+		setMessage("Done.", Color::Black);
+		this->Refresh();
+
+		
+		
 	}
 	private: System::Void next_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		int n = MapData::queries.size();
 		currentQuery++;
 		currentQuery %= n;
 		setCurrentQuery(currentQuery);
+
+		/*if (!MapData::results.empty()) {
+			printf("\n\n-----------Current query path-------\n");
+			auto currentQueryResult = MapData::results[currentQuery];
+			for (auto id : currentQueryResult.pathId) {
+				printf("<%f, %f> ", MapData::nodes[id].loc.x, MapData::nodes[id].loc.y);
+
+			}
+			cout << endl;
+
+		}*/
+
+		// draw the path
+		mapView_panel->Invalidate();
 
 	}
 	private: System::Void prev_btn_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -550,6 +744,53 @@ namespace AlgoProject {
 		currentQuery += n;
 		currentQuery %= n;
 		setCurrentQuery(currentQuery);
+
+		/*if (!MapData::results.empty()) {
+			printf("\n\n-----------Current query path-------\n");
+			auto currentQueryResult = MapData::results[currentQuery];
+			for (auto id : currentQueryResult.pathId) {
+				printf("<%f, %f> ", MapData::nodes[id].loc.x, MapData::nodes[id].loc.y);
+
+			}
+			cout << endl;
+
+		}*/
+
+		// draw the path
+		mapView_panel->Invalidate();
+	}
+	private: System::Void mapView_panel_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	
+		// detect if the mouse is clicked, then activate the dragging.
+		if (e->Button == Windows::Forms::MouseButtons::Left) {
+			isDragging = true;
+			dragStartPos = e->Location;
+		}
+
+	}
+
+
+	private: System::Void mapView_panel_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		if (isDragging) {
+			// Calculate drag distance
+			float delta_x = e->X - dragStartPos.X;
+			float delta_y = e->Y - dragStartPos.Y;
+
+			// Update total pan offset
+			MapData::panOffset.x += delta_x;
+			MapData::panOffset.y += delta_y;
+
+			// Update "last position" for next move event
+			dragStartPos = e->Location;
+
+			// Redraw the panel.
+			mapView_panel->Invalidate();
+		}
+
+	}
+	private: System::Void mapView_panel_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	
+		isDragging = false;
 	}
 };
 }

@@ -13,3 +13,4 @@ int MapData::N = 0;
 int MapData::M = 0;
 int MapData::defaultRadius = 1;
 int currentQuery = 0;
+DS::Point MapData::panOffset = DS::Point(0, 0);

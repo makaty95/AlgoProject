@@ -89,6 +89,10 @@ DS::Point Visuals::normalize(double x, double y) {
 
     DS::Point ret = zoom(DS::Point(_x, _y));
     //printf("before: %f, %f \n after: %f, %f \n", _x, _y, ret.x, ret.y);
+    
+    // handle mouse dragging 
+    ret.x += MapData::panOffset.x;
+    ret.y += MapData::panOffset.y;
 
     return ret;
 }

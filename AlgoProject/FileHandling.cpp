@@ -162,6 +162,7 @@ void ResetAll() {
     MapData::isLoaded = false;
     MapData::N = 0;
     MapData::M = 0;
+    MapData::results.clear();
 }
 
 int FIO::ReadMap(

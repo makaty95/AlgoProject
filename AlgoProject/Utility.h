@@ -35,7 +35,7 @@ namespace Visuals {
     //void setMapDrawing(bool toSet);
 
     
-
+    
     std::vector<DS::Point>  zoom();
     DS::Point               zoom(DS::Point p);
     DS::Point               normalize(DS::Point p);
