@@ -13,8 +13,16 @@
 //    
 //};
 
+// Somewhere at the top of your source file or in a header
+
+class PathFinder {
+public:
+    static void InitializeKDTree();
+};
+
 void Start();
-std::vector<DS::Edge> FindAdjacentNodes(const DS::Node& point, double R);
-void Dijkstra(int start, int end);
-void get_res(const std::vector<std::pair<int, int>>& parent, int start, int end, const std::vector<double>& times);
+
+inline std::vector<DS::Edge> FindAdjacentNodes(const DS::Node& point, double R);
+inline void Dijkstra(int start, int end);
+inline void get_res(const std::vector<std::pair<int, int>>& parent, int start, int end, const std::vector<double>& times);
 
