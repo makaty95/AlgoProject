@@ -1,61 +1,209 @@
 ﻿  FileHandling.cpp
-  main.cpp
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(425,10): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(424,31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,77): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(541,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(548,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
-  
   MainForm.cpp
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(425,10): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(510,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(424,31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(510,28): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(527,10): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(526,31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,77): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(541,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(438,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(541,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MainForm.cpp')
   
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(548,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,74): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,68): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,78): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,72): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(582,42): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(582,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(583,42): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(583,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,77): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(721,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(742,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(776,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'MainForm.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(777,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'MainForm.cpp')
   
   PathFinder.cpp
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(39,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(140,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(141,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(38,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(39,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Types.cpp
   Utility.cpp
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  main.cpp
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(510,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(510,28): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(527,10): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(526,31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(541,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,74): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(552,68): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,78): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(558,72): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(582,42): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(582,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(583,42): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(583,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(587,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,49): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(588,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,77): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(602,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(721,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(742,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(776,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'main.cpp')
+  
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(777,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'main.cpp')
+  
   Generating Code...
   FileHandling.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   AlgoProject.vcxproj -> D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\x64\Release\AlgoProject.exe

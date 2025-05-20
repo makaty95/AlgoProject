@@ -18,9 +18,12 @@ Class AlgoProject.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
+    Boolean isDragging : Public
+    System.Drawing.Point dragStartPos : Public
     Int32 currentQuery : Public
   Methods:
     EnableDoubleBuffering(Control): PrivateScope, Public, HideBySig
+    setMessage(String, Color): PrivateScope, Public, HideBySig
     setQueriesInfo(): PrivateScope, Public, HideBySig
     setCurrentQuery(Int32): PrivateScope, Public, HideBySig
     setTimeLabels(): PrivateScope, Public, HideBySig
