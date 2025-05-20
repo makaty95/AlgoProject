@@ -100,8 +100,9 @@ D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainF
   (compiling source file 'MainForm.cpp')
   
   PathFinder.cpp
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(38,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(39,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(39,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(140,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\PathFinder.cpp(141,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
 D:\VisualStudio22\PROJECTS\MapTrackerProj\CodeBase\AlgoProject\AlgoProject\MainForm.h(510,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'main.cpp')
